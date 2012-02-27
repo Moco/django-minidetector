@@ -57,7 +57,7 @@ class Middleware(object):
                     device['winphone7'] = "winphone7"
 
                 elif s.find("nokia") > 0:
-                    device['nokia'] = "nokia" + re.search("nokia([a-z0-9]+)", s).groups(0)[0]
+                    device['nokia'] = "nokia" + re.search("nokia([\sa-z0-9]+)", s).groups(0)[0]
                     
                 if s.find("blackberry") > 0:
                     device['blackberry'] = "blackberry"
