@@ -19,7 +19,6 @@ def fullsplit(path, result=None):
  
 package_dir = "minidetector"
  
- 
 packages = []
 for dirpath, dirnames, filenames in os.walk(package_dir):
     # ignore dirnames that start with '.'
@@ -30,9 +29,12 @@ for dirpath, dirnames, filenames in os.walk(package_dir):
         packages.append(".".join(fullsplit(dirpath)))
  
  
-setup(name='minidetector',
-    version='0.1',
+setup(
+    name='minidetector',
+    data_files=['','search_strings.txt']
+    version='0.2',
     description='Django Mini (Screen) Detector',
-    author='Ben Keating',
-    url='http://github.com/bkeating/django-minidetector',
-    packages=packages)
+    author='Mocoman',
+    url='http://github.com/moco/django-minidetector',
+    packages=packages
+    )
