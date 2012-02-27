@@ -1,4 +1,5 @@
 from useragents import search_strings
+import re
 
 class Middleware(object):
     @staticmethod
@@ -7,19 +8,19 @@ class Middleware(object):
            depending on whether the request should be considered to come from a
            small-screen device such as a phone or a PDA"""
 
+        request.mobile = False
+
         if request.META.has_key("HTTP_X_OPERAMINI_FEATURES"):
             #Then it's running opera mini. 'Nuff said.
             #Reference from:
             # http://dev.opera.com/articles/view/opera-mini-request-headers/
             request.mobile = True
-            return None
 
         if request.META.has_key("HTTP_ACCEPT"):
             s = request.META["HTTP_ACCEPT"].lower()
             if 'application/vnd.wap.xhtml+xml' in s:
                 # Then it's a wap browser
                 request.mobile = True
-                return None
 
 
         request.devices = {}
@@ -32,7 +33,6 @@ class Middleware(object):
             for ua in search_strings:
                 if ua in s:
                     request.mobile = True
-                    return None
 
             device = {}
             # also interested if it's a iPhone or Andriod, e.g. something common
@@ -57,9 +57,6 @@ class Middleware(object):
             # spits out device names for CSS targeting, to be applied to <html> or <body>.
             request.devices = " ".join(v for (k,v) in device.items())
 
-
-        #Otherwise it's not a mobile
-        request.mobile = False
         return None
 
 def detect_mobile(view):
