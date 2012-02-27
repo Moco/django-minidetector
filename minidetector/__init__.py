@@ -36,33 +36,39 @@ class Middleware(object):
 
             device = {}
             # also interested if it's a iPhone or Andriod, e.g. something common
-            if s.find("iphone") > 0:
-                device['iphone'] = "iphone" + re.search("iphone os (\d)", s).groups(0)[0]
-                
-            if s.find("ipad") > 0:
-                device['ipad'] = "ipad"
-                
-            if s.find("android") > 0:
-                device['android'] = "android" + re.search("android (\d\.\d)", s).groups(0)[0].translate(None, '.')
+            try:
+                if s.find("iphone") > 0:
+                    device['iphone'] = "iphone" + re.search("iphone os (\d)", s).groups(0)[0]
+                    
+                if s.find("ipad") > 0:
+                    device['ipad'] = "ipad"
+                    
+                if s.find("android") > 0:
+                    device['android'] = "android" + re.search("android (\d\.\d)", s).groups(0)[0].translate(None, '.')
 
-            if s.find("symbianOS/") > 0:
-                device['nokia'] = "symbian" + re.search("symbianOS/(\d\.\d)", s).groups(0)[0]
+                if s.find("symbianOS/") > 0:
+                    device['nokia'] = "symbian" + re.search("symbianOS/(\d\.\d)", s).groups(0)[0]
 
-            elif s.find("symbian/") > 0:
-                device['nokia'] = "symbian" + re.search("symbianOS/(\d)", s).groups(0)[0]
+                elif s.find("symbian/") > 0:
+                    device['nokia'] = "symbian" + re.search("symbianOS/(\d)", s).groups(0)[0]
 
-            elif s.find("windows phone os 7") > 0:
-                device['winphone7'] = "winphone7"
+                elif s.find("windows phone os 7") > 0:
+                    device['winphone7'] = "winphone7"
 
-            elif s.find("nokia") > 0:
-                device['nokia'] = "nokia" + re.search("nokia([a-z0-9]+)", s).groups(0)[0]
-                
-            if s.find("blackberry") > 0:
-                device['blackberry'] = "blackberry"
-                
-            if s.find("iemobile") > 0:
-                device['winmo'] = "winmo"
-        
+                elif s.find("nokia") > 0:
+                    print '>>>',s 
+                    device['nokia'] = "nokia" + re.search("nokia([a-z0-9]+)", s).groups(0)[0]
+                    
+                if s.find("blackberry") > 0:
+                    device['blackberry'] = "blackberry"
+                    
+                if s.find("iemobile") > 0:
+                    device['winmo'] = "winmo"
+            
+            except Exception,e:
+                print 'Error',e
+                print s
+
             # spits out device names for CSS targeting, to be applied to <html> or <body>.
             request.devices = " ".join(v for (k,v) in device.items())
 
