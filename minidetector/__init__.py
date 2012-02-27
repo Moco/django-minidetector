@@ -39,7 +39,10 @@ class Middleware(object):
             # also interested if it's a iPhone or Andriod, e.g. something common
             try:
                 if s.find("iphone") > 0:
-                    device['iphone'] = "iphone" + re.search("iphone os (\d)", s).groups(0)[0]
+                    try:
+                        device['iphone'] = "iphone" + re.search("iphone os (\d)", s).groups(0)[0]
+                    except:
+                        device['iphone'] = "iphone" + re.search("version/(\d\.\d)", s).groups(0)[0]
                     
                 if s.find("ipad") > 0:
                     device['ipad'] = "ipad"
@@ -51,9 +54,9 @@ class Middleware(object):
                     device['nokia'] = "symbian" + re.search("symbianOS/(\d\.\d)", s).groups(0)[0]
 
                 elif s.find("symbian/") > 0:
-                    device['nokia'] = "symbian" + re.search("symbianOS/(\d)", s).groups(0)[0]
+                    device['nokia'] = "symbian" + re.search("symbian/(\d)", s).groups(0)[0]
 
-                elif s.find("windows phone os 7") > 0:
+                elif s.find("windows phone os 7") > 0 or s.find("zunewp7")>0:
                     device['winphone7'] = "winphone7"
 
                 elif s.find("nokia") > 0:
