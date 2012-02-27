@@ -31,7 +31,7 @@ for dirpath, dirnames, filenames in os.walk(package_dir):
  
 setup(
     name='minidetector',
-    data_files=[('',['minidetector/search_strings.txt'])],
+    package_data={'minidetector':['search_strings.txt']},
     version='0.2',
     description='Django Mini (Screen) Detector',
     author='Mocoman',
