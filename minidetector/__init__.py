@@ -44,12 +44,21 @@ class Middleware(object):
                 
             if s.find("android") > 0:
                 device['android'] = "android" + re.search("android (\d\.\d)", s).groups(0)[0].translate(None, '.')
+
+            if s.find("symbianOS/") > 0:
+                device['nokia'] = "symbian" + re.search("symbianOS/(\d\.\d)", s).groups(0)[0]
+
+            elif s.find("symbian/") > 0:
+                device['nokia'] = "symbian" + re.search("symbianOS/(\d)", s).groups(0)[0]
+
+            elif s.find("windows phone os 7") > 0:
+                device['winphone7'] = "winphone7"
+
+            elif s.find("nokia") > 0:
+                device['nokia'] = "nokia" + re.search("nokia([a-z0-9]+)", s).groups(0)[0]
                 
             if s.find("blackberry") > 0:
                 device['blackberry'] = "blackberry"
-                
-            if s.find("windows phone os 7") > 0:
-                device['winphone7'] = "winphone7"
                 
             if s.find("iemobile") > 0:
                 device['winmo'] = "winmo"
