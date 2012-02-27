@@ -6,13 +6,17 @@
 # This list is public domain, please feel free to use it for your own projects
 # If HTTP_USER_AGENT.lower() contains any of these strings, it's a mobile
 # Also include some games consoles, see below
-
+iphone
+ipad
+android
 mobile
 sony
 symbian
 nokia
 samsung
 windows ce
+windows phone os 7
+iemobile
 epoc
 opera mini
 nitro

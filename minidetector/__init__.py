@@ -21,6 +21,8 @@ class Middleware(object):
                 request.mobile = True
                 return None
 
+
+        request.devices = {}
         if request.META.has_key("HTTP_USER_AGENT"):
             # This takes the most processing. Surprisingly enough, when I
             # Experimented on my own machine, this was the most efficient
@@ -31,6 +33,30 @@ class Middleware(object):
                 if ua in s:
                     request.mobile = True
                     return None
+
+            device = {}
+            # also interested if it's a iPhone or Andriod, e.g. something common
+            if s.find("iphone") > 0:
+                device['iphone'] = "iphone" + re.search("iphone os (\d)", s).groups(0)[0]
+                
+            if s.find("ipad") > 0:
+                device['ipad'] = "ipad"
+                
+            if s.find("android") > 0:
+                device['android'] = "android" + re.search("android (\d\.\d)", s).groups(0)[0].translate(None, '.')
+                
+            if s.find("blackberry") > 0:
+                device['blackberry'] = "blackberry"
+                
+            if s.find("windows phone os 7") > 0:
+                device['winphone7'] = "winphone7"
+                
+            if s.find("iemobile") > 0:
+                device['winmo'] = "winmo"
+        
+            # spits out device names for CSS targeting, to be applied to <html> or <body>.
+            request.devices = " ".join(v for (k,v) in device.items())
+
 
         #Otherwise it's not a mobile
         request.mobile = False
