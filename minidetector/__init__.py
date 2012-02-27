@@ -1,5 +1,6 @@
 from useragents import search_strings
 import re
+import sys, traceback
 
 class Middleware(object):
     @staticmethod
@@ -56,7 +57,6 @@ class Middleware(object):
                     device['winphone7'] = "winphone7"
 
                 elif s.find("nokia") > 0:
-                    print '>>>',s 
                     device['nokia'] = "nokia" + re.search("nokia([a-z0-9]+)", s).groups(0)[0]
                     
                 if s.find("blackberry") > 0:
@@ -66,6 +66,7 @@ class Middleware(object):
                     device['winmo'] = "winmo"
             
             except Exception,e:
+                traceback.print_exc(file=sys.stdout)
                 print 'Error',e
                 print s
 
