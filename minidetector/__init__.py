@@ -38,6 +38,7 @@ class Middleware(object):
             device = {}
             # also interested if it's a iPhone or Andriod, e.g. something common
             try:
+                # TODO: this really needs a lot of work, for now, it should get the most common phone OS
                 if s.find("iphone") > 0:
                     try:
                         device['iphone'] = "iphone" + re.search("os (\d_\d)", s).groups(0)[0]
@@ -79,8 +80,13 @@ class Middleware(object):
                 print 'Error',e
                 print s
 
+            if device=={} and request.mobile:
+                # capture unknown devices for later analysis
+                device['unknown'] = s
+
             # spits out device names for CSS targeting, to be applied to <html> or <body>.
             request.devices = " ".join(v for (k,v) in device.items())
+
 
         return None
 
