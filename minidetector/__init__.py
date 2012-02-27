@@ -40,12 +40,15 @@ class Middleware(object):
             try:
                 if s.find("iphone") > 0:
                     try:
-                        device['iphone'] = "iphone" + re.search("iphone os (\d)", s).groups(0)[0]
+                        device['iphone'] = "iphone" + re.search("os (\d_\d)", s).groups(0)[0]
                     except:
                         device['iphone'] = "iphone" + re.search("version/(\d\.\d)", s).groups(0)[0]
                     
                 if s.find("ipad") > 0:
-                    device['ipad'] = "ipad"
+                    device['ipad'] = "ipad" + re.search("os (\d_\d)", s).groups(0)[0]
+
+                if s.find("ipod") > 0:
+                    device['ipod'] = "ipad"
                     
                 if s.find("android") > 0:
                     device['android'] = "android" + re.search("android (\d\.\d)", s).groups(0)[0].translate(None, '.')
