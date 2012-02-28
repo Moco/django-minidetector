@@ -82,10 +82,13 @@ class Middleware(object):
 
             if device=={} and request.mobile:
                 # capture unknown devices for later analysis
-                device['unknown'] = s
+                device['unknown'] = "mobile :" + s
+
+            if not request.mobile:
+                device['desktop'] = "desktop :" + s
 
             # spits out device names for CSS targeting, to be applied to <html> or <body>.
-            request.devices = " ".join(v for (k,v) in device.items())
+            request.devices = " ".join(device.values())
 
 
         return None
