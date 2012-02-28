@@ -45,16 +45,16 @@ class Middleware(object):
                     except:
                         device['iphone'] = "iphone" + re.search("version/(\d\.\d)", s).groups(0)[0]
                     
-                if s.find("ipad") > 0:
+                elif s.find("ipad") > 0:
                     device['ipad'] = "ipad" + re.search("os (\d_\d)", s).groups(0)[0]
 
-                if s.find("ipod") > 0:
+                elif s.find("ipod") > 0:
                     device['ipod'] = "ipad"
                     
-                if s.find("android") > 0:
+                elif s.find("android") > 0:
                     device['android'] = "android" + re.search("android (\d\.\d)", s).groups(0)[0].translate(None, '.')
 
-                if s.find("symbianOS/") > 0:
+                elif s.find("symbianOS/") > 0:
                     device['nokia'] = "symbian" + re.search("symbianOS/(\d\.\d)", s).groups(0)[0]
 
                 elif s.find("symbian/") > 0:
@@ -69,10 +69,10 @@ class Middleware(object):
                     except:
                         device['nokia'] = "series-" + re.search("nokia/series-([\sa-z0-9]+)", s).groups(0)[0]
                     
-                if s.find("blackberry") > 0:
+                elif s.find("blackberry") > 0:
                     device['blackberry'] = "blackberry"
                     
-                if s.find("iemobile") > 0:
+                elif s.find("iemobile") > 0:
                     device['winmo'] = "winmo"
             
             except Exception,e:
