@@ -88,7 +88,7 @@ class Middleware(object):
                 device['desktop'] = "desktop :" + s
 
             # spits out device names for CSS targeting, to be applied to <html> or <body>.
-            request.devices = " ".join(device.values())
+            request.devices = device.values()
 
 
         return None
