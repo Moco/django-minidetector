@@ -33,10 +33,10 @@ def MobileDetectionFactory(uas, expected):
             minidetector.Middleware.process_request(request)
             if self.expected:
                 self.assert_(request.mobile,
-                             "Mobile Not Detected: %s" % ua)
+                             "Mobile Not Detected: '%s'" % ua)
             else:
                 self.assert_(not request.mobile,
-                             "Mobile Falsely Detected: %s" % ua)
+                             "Mobile Falsely Detected: '%s'" % ua)
     def testnum(num):
         def test(self):
             return self.testUA(self.uas[num])
@@ -73,5 +73,7 @@ def gen_suite():
 
 suite = gen_suite()
 
-if __name__ == "__main__":
+
+if __name__ in ("minidetector.tests", "__main__"):
     TextTestRunner().run(suite)
+

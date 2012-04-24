@@ -3,3 +3,8 @@ This application is a simple middleware and associated decorator that will add a
 This mostly works using a list of search strings, though there are a couple of other tricks, like detecting the presence of Opera Mini. The strings are in an easily-parseable text file, and thus can be used for other similar projects.
 
 It also includes a pretty extensive list of user agents to test against.
+
+It also addes a dictionary to requests, to figure out which device as well as if it's a Facebook app.
+
+To test,
+$:python -m unittest minidetector.tests

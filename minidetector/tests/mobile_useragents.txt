@@ -171,3 +171,7 @@ Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Geck
 Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10
 Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543 Safari/419.3
 Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+  (KHTML, like Gecko) Version/3.0 Mobile/1C28 Safari/419.3
+Mozilla/5.0 (iPad; U; CPU iPhone OS 4_3_5 like Mac OS X; en_US) AppleWebKit (KHTML, like Gecko) Mobile [FBAN/FBForIPhone;FBAV/4.1.1;FBBV/4110.0;FBDV/iPad2,2;FBMD/iPad;FBSN/iPhone OS;FBSV/4.3.5;FBSS/1; FBCR/;FBID/tablet;FBLC/en_US;FBSF/1.0]
+Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en_US) AppleWebKit (KHTML, like Gecko) Mobile [FBAN/FBForIPhone;FBAV/4.1;FBBV/4100.0;FBDV/iPhone3,1;FBMD/iPhone;FBSN/iPhone OS;FBSV/4.3.3;FBSS/2; FBCR/Telstra;FBID/phone;FBLC/en_US;FBSF/2.0]
+Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1 like Mac OS X; en_US) AppleWebKit (KHTML, like Gecko) Mobile [FBAN/FBForIPhone;FBAV/4.1.1;FBBV/4110.0;FBDV/iPhone2,1;FBMD/iPhone;FBSN/iPhone OS;FBSV/5.1;FBSS/1; FBCR/Telstra;FBID/phone;FBLC/en_US;FBSF/1.0]
+Mozilla/5.0 (iPad; U; CPU iPhone OS 5_1 like Mac OS X; en_US) AppleWebKit (KHTML, like Gecko) Mobile [FBAN/FBForIPhone;FBAV/4.1.1;FBBV/4110.0;FBDV/iPad2,2;FBMD/iPad;FBSN/iPhone OS;FBSV/5.1;FBSS/1; FBCR/Telstra;FBID/tablet;FBLC/en_US;FBSF/1.0]

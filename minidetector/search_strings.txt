@@ -9,6 +9,7 @@
 zunewp7
 iphone
 ipad
+htc
 android
 mobile
 sony
