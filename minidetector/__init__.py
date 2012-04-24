@@ -142,10 +142,10 @@ class Middleware(object):
                 if s.find("fbdv") > -1:
                     facebook = True
                     # some facebook app
-                    if not found_device:
-                        found_device = "unknown"
-                        device[found_device] = "mobile: "+s
-                    device[found_device] = "facebook (version "+re.search("fbbv/(\d.\d)",s).groups(0)[0]+") " + device[found_device]
+                    #if not found_device:
+                        #found_device = "unknown"
+                        #device[found_device] = "mobile: "+s
+                    #device[found_device] = "facebook (version "+re.search("fbbv/(\d.\d)",s).groups(0)[0]+") " + device[found_device]
             
             except Exception,e:
                 traceback.print_exc(file=sys.stdout)
@@ -157,13 +157,16 @@ class Middleware(object):
                 device['unknown'] = "mobile :" + s
 
             if not request.mobile:
-                device['desktop'] = "desktop :" + s
+                if s.find("msie")>-1:
+                    device['is'] = "ie " + re.search("msie (\d+\.\d+)",s).groups(0)[0]
+                else:
+                    device['desktop'] = "desktop :" + s
 
             # spits out device names for CSS targeting, to be applied to <html> or <body>.
             request.devices  = device.values()
             request.facebook = facebook
 
-            if request.mobile:
+            if not request.mobile:
                 print found_device,request.devices
 
         return None
