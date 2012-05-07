@@ -1,6 +1,9 @@
 from useragents import search_strings
 import re
+import logging
 import sys, traceback
+
+logger = logging.getLogger(__name__)
 
 class Middleware(object):
     @staticmethod
@@ -148,9 +151,9 @@ class Middleware(object):
                     #device[found_device] = "facebook (version "+re.search("fbbv/(\d.\d)",s).groups(0)[0]+") " + device[found_device]
             
             except Exception,e:
-                traceback.print_exc(file=sys.stdout)
-                print 'Error',e
-                print s
+                logger.error(e)
+                logger.error(traceback.format_exc())
+                logger.debug(s)
 
             if device=={} and request.mobile:
                 # capture unknown devices for later analysis
@@ -164,10 +167,10 @@ class Middleware(object):
 
             # spits out device names for CSS targeting, to be applied to <html> or <body>.
             request.devices  = device.values()
-            request.facebook = facebook
+            request.is_facebook = facebook
 
             if not request.mobile:
-                print found_device,request.devices
+                 logger.info(found_device, request.devices)
 
         return None
 
