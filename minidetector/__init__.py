@@ -40,11 +40,12 @@ class Middleware(object):
                         break
 
             device = {}
-            facebook = False
+            facebook_app = False
             # also interested if it's a iPhone or Andriod, e.g. something common
             try:
                 # TODO: this really needs a lot of work, for now, it should get the most common phone OS
-                # also, check if we have entered via facebook
+                #
+                # Check if we have entered via facebook app, rather than a mobile browser
                 found_device = None
 
                 if s.find("iphone") > -1:
@@ -60,7 +61,7 @@ class Middleware(object):
 
                 elif s.find("ipod") > -1:
                     found_device = "ipod"
-                    device['ipod'] = "ipad"
+                    device['ipod'] = "ipod"
                     
                 elif s.find("android") > -1:
                     found_device = "android"
@@ -143,12 +144,7 @@ class Middleware(object):
                         pass
 
                 if s.find("fbdv") > -1:
-                    facebook = True
-                    # some facebook app
-                    #if not found_device:
-                        #found_device = "unknown"
-                        #device[found_device] = "mobile: "+s
-                    #device[found_device] = "facebook (version "+re.search("fbbv/(\d.\d)",s).groups(0)[0]+") " + device[found_device]
+                    facebook_app = True
             
             except Exception,e:
                 logger.error(e)
@@ -167,7 +163,7 @@ class Middleware(object):
 
             # spits out device names for CSS targeting, to be applied to <html> or <body>.
             request.devices  = device.values()
-            request.is_facebook = facebook
+            request.is_facebook = facebook_app
 
             if not request.mobile:
                  logger.info(found_device, request.devices)
