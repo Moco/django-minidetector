@@ -1,10 +1,19 @@
-This application is a simple middleware and associated decorator that will add a ".mobile" attribute to your request objects, which, if True, means the requester is coming to you from a mobile phone (cellphone), PDA, or other device that should be considered small screened, or have an underpowered browser, such as games consoles.
+This application is a simple middleware and associated decorator that will add 
+a ".mobile" attribute to your request objects, which, if True, means the requester
+is coming to you from a mobile phone (cellphone), PDA, or other device that
+should be considered small screened, or have an underpowered browser, 
+such as games consoles.
 
-This mostly works using a list of search strings, though there are a couple of other tricks, like detecting the presence of Opera Mini. The strings are in an easily-parseable text file, and thus can be used for other similar projects.
+This mostly works using a list of search strings, though there are a couple 
+of other tricks, like detecting the presence of Opera Mini. The strings are in
+an easily-parseable text file, and thus can be used for other similar projects.
 
 It also includes a pretty extensive list of user agents to test against.
 
-It also addes a dictionary to requests, to figure out which device as well as if it's a Facebook app.
+It also adds a dictionary to the request object, to figure out which device as 
+well as if it's a Facebook app.
 
-To test,
-$:python -m unittest minidetector.tests
+To run the tests
+================
+
+``` $ python -m unittest minidetector.tests ```
