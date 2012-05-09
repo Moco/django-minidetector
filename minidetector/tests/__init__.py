@@ -1,13 +1,14 @@
 from unittest import TestSuite, TestCase, TextTestRunner, TestLoader
 
-import minidetector
-
+import sys
 import os.path
+import minidetector
 
 
 class DummyRequest(object):
     def __init__(self, useragent):
         self.META = {'HTTP_USER_AGENT': useragent}
+
 
 class TestHTTPHeaders(TestCase):
     """Everything that Isn't a User-Agent Header"""
@@ -24,7 +25,6 @@ class TestHTTPHeaders(TestCase):
         self.assert_(request.mobile, "Opera Mini not Detected")
 
 
-
 def MobileDetectionFactory(uas, expected):
     class MobileDetection(TestCase):
 
@@ -37,6 +37,7 @@ def MobileDetectionFactory(uas, expected):
             else:
                 self.assert_(not request.mobile,
                              "Mobile Falsely Detected: '%s'" % ua)
+
     def testnum(num):
         def test(self):
             return self.testUA(self.uas[num])
@@ -46,22 +47,16 @@ def MobileDetectionFactory(uas, expected):
     suite = TestSuite()
     for x in range(len(uas)):
         if not uas[x].startswith('#'):
-            setattr(MobileDetection, 'test%s'%x, testnum(x))
+            setattr(MobileDetection, 'test%s' % x, testnum(x))
             suite.addTest(MobileDetection('test%s' % x))
     return suite
 
 
 def suite_from_file(filename, expected):
-    f = None
-    try:
-        f = open(os.path.join(os.path.dirname(__file__), filename))
+    with open(os.path.join(os.path.dirname(__file__), filename)) as f:
         uas = f.readlines()
-    finally:
-        if f:
-            f.close()
 
-    suite = MobileDetectionFactory(uas=uas, expected=expected)
-    return suite
+    return MobileDetectionFactory(uas=uas, expected=expected)
 
 
 def gen_suite():
@@ -75,5 +70,5 @@ suite = gen_suite()
 
 
 if __name__ in ("minidetector.tests", "__main__"):
-    TextTestRunner().run(suite)
-
+    result = TextTestRunner().run(suite)
+    sys.exit(int(not result.wasSuccessful()))
