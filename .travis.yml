@@ -1,9 +1,8 @@
-lannguage: python
+language: python
 python:
   - "2.6"
   - "2.7"
 install:
-  - pip install nose
-  - pip install . --use-mirrors
+  - pip install -r requirements.txt --use-mirrors
 script:
   - nosetests --with-xunit --xunit-file=junit-report.xml
