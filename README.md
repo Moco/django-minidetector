@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/Moco/django-minidetector.png?branch=master)](http://travis-ci.org/Moco/django-minidetector)
+
 This application is a simple middleware and associated decorator that will add 
 a ".mobile" attribute to your request objects, which, if True, means the requester
 is coming to you from a mobile phone (cellphone), PDA, or other device that
