@@ -157,7 +157,11 @@ class Middleware(object):
 
             if not request.mobile:
                 if s.find("msie")>-1:
-                    device['is'] = "ie " + re.search("msie (\d+\.\d+)",s).groups(0)[0]
+                    try:
+                        device['ie'] = "ie " + re.search("msie (\d+\.\d+)",s).groups(0)[0]
+                    except:
+                        pass
+                        
                 else:
                     device['desktop'] = "desktop :" + s
 
