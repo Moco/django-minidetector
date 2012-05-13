@@ -1,7 +1,7 @@
 from useragents import search_strings
 import re
 import logging
-import sys, traceback
+import traceback
 
 logger = logging.getLogger(__name__)
 
