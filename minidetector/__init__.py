@@ -169,10 +169,6 @@ class Middleware(object):
             request.devices  = device.values()
             request.is_facebook = facebook_app
 
-            if not request.mobile:
-                 logger.info(found_device, request.devices)
-                 logger.info(request.devices)
-
         return None
 
 def detect_mobile(view):
