@@ -171,6 +171,7 @@ class Middleware(object):
 
             if not request.mobile:
                  logger.info(found_device, request.devices)
+                 logger.info(request.devices)
 
         return None
 
